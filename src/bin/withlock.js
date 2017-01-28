@@ -2,6 +2,7 @@
 import advisoryLock from '../'
 import parseArgs from 'minimist'
 import { spawn } from 'child_process'
+import Promise from 'bluebird'
 
 const errExit = (msg) => {
   console.error(msg)

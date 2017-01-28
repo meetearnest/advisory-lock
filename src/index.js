@@ -1,6 +1,7 @@
 import pg from 'pg'
 import { createHash } from 'crypto'
 import initDebug from 'debug'
+import Promise from 'bluebird'
 
 const debug = initDebug('advisory-lock')
 const noop = () => {}
