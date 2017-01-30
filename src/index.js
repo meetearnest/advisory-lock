@@ -121,11 +121,9 @@ export default (conString) => {
                 throw err
               })
             )
-        } else {
-          return Promise.reject(new Error('Lock could not be obtained.'))
         }
-      }
-    )
+        return Promise.reject(new Error('Lock could not be obtained.'))
+      })
 
     const fns = { lock, unlock, tryLock, withLock, tryWithLock }
 
