@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import pg from 'pg'
 import { createHash } from 'crypto'
 import initDebug from 'debug'
