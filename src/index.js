@@ -111,7 +111,23 @@ export default (conString) => {
       )
     )
 
-    const fns = { lock, unlock, tryLock, withLock }
+    const tryWithLock = (fn) => tryLock().then((worked) => {
+        if (worked) {
+          return Promise.resolve()
+            .then(fn)
+            .then(
+              (res) => unlock().then(() => res),
+              (err) => unlock().then(() => {
+                throw err
+              })
+            )
+        } else {
+          return Promise.reject(new Error('Lock could not be obtained.'))
+        }
+      }
+    )
+
+    const fns = { lock, unlock, tryLock, withLock, tryWithLock }
 
     // "Block" function calls until client is connected
     const guardedFns = {}
