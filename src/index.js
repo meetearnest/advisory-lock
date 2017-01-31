@@ -88,9 +88,8 @@ const initWaitForConnection = (client) => {
   })
 }
 
-export default (conString) => {
-  debug(`connection string: ${conString}`)
-  const client = patchClient(new pg.Client(conString))
+export default (clientConfig) => {
+  const client = patchClient(new pg.Client(clientConfig))
   const waitForConnection = initWaitForConnection(client)
   // TODO: client.connection.stream.unref()?
 
